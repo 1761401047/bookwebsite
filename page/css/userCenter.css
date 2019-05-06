@@ -1,0 +1,387 @@
+::-webkit-scrollbar {
+    display: none;
+}
+body{
+    background-color: #f4f5f7;
+    width: 1160px;
+    margin: 0 auto;
+    margin-bottom: 200px;
+}
+.header{
+    background-color: #ffffff;
+    box-shadow: 0 1px 4px 0 #cccccc;
+}
+.banner{
+    position: relative;
+    margin: 45px auto 0;
+    background-image: url("../img/banner3.png");
+    background-position: center bottom;
+}
+.banner .bg{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    background: linear-gradient(to top,rgba(0,0,0,0.5),rgba(0,0,0,0));
+}
+.banner .user_box{
+    z-index: 10;
+}
+.banner .user_box.userInfo{
+    height: 128px;
+}
+.banner .user_box.userInfo .rg_side{
+    display: inline-block;
+    vertical-align: middle;
+}
+.banner .user_box.userInfo .rg_side .btn{
+    display: block;
+    margin-top: 20px;
+}
+.banner .user_box.userInfo .avatar{
+    position: static;
+    margin-right: 10px;
+}
+.banner .user_box .avatar_area{
+    position: relative;
+    width: 128px;
+    height: 128px;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 10px;
+}
+.banner .user_box .avatar_area:hover .upload_avatar{
+    display: block;
+}
+.banner .user_box .avatar{
+    position: absolute;
+    z-index: 100;
+}
+.banner .user_box .upload_avatar{
+    position: absolute;
+    display: none;
+    bottom: -67px;
+    left: -14px;
+    width: 150px;
+    height: 100px;
+    background-color: rgba(0,0,0,0);
+    z-index: 10;
+    border-radius: 5px;
+}
+.banner .user_box .upload_avatar .button{
+    position: absolute;
+    bottom: 25px;
+    left: 50%;
+    transform: translate3d(-50%,0,0);
+    width: 80px;
+    height: 40px;
+    color: #ffffff;
+    font-weight: 700;
+    line-height: 40px;
+    background-color: #00a1d6;
+    border-radius: 4px;
+    text-align: center;
+    cursor: pointer;
+}
+.banner .user_box .upload_avatar input{
+    position: absolute;
+    width: 80px;
+    height: 62px;
+    bottom: 25px;
+    left: 50%;
+    transform: translate3d(-50%,0,0);
+    opacity: 0;
+    cursor: pointer;
+}
+.banner .user_box .btn{
+    display: inline-block;
+    width: 80px;
+    height: 30px;
+    color: #ffffff;
+    font-weight: 700;
+    line-height: 30px;
+    background-color: #00a1d6;
+    border-radius: 4px;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+}
+.banner .user_box .dis_btn{
+    background-color: #cccccc;
+}
+.banner .coin{
+    position: absolute;
+    right: 20px;
+    bottom: 15px;
+    z-index: 10;
+    color: rgb(184, 204, 197);
+}
+.banner .coin .text,
+.banner .coin .num{
+    font-size: 24px;
+    font-weight: 700;
+}
+.banner .coin .num{
+    font-size: 32px;
+    color: #00a1d6;
+}
+.user_box{
+    position: absolute;
+    left: 20px;
+    bottom: 15px;
+}
+.user_box .avatar{
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    vertical-align: middle;
+    border: 4px solid #f1f1f1;
+}
+.user_box .user_name{
+    font-size: 24px;
+    color: #ffffff;
+    font-weight: 700;
+    vertical-align: middle;
+}
+.main{
+    margin: 0 15px;
+}
+.main .part .title{
+    height: 50px;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 50px;
+    border-bottom: 1px solid #dddddd;
+}
+.main .article_area{
+    margin-top: 15px;
+}
+.sub_area .book_item{
+    position: relative;
+}
+.sub_area .book_item:hover .master_info,
+.sub_area .book_item:hover .subUser_info{
+    display: block;
+}
+.sub_area .book_item a{
+    display: inline-block;
+    vertical-align: top;
+}
+.master_info,
+.subUser_info{
+    position: absolute;
+    display: none;
+    top: 0;
+    left: 0;
+    width: 150px;
+    height: 200px;
+    background-color: rgba(0,0,0,0.7);
+    text-align: left;
+    font-weight: 500;
+    pointer-events: none;
+    border-radius: 4px;
+    color: #00a1d6;
+}
+.master_info .m_title,
+.subUser_info .m_title{
+    font-size: 20px;
+    font-weight: 700;
+    text-align: center;
+    margin-top: 20px;
+}
+.master_info .item,
+.subUser_info .item{
+    margin-top: 20px;
+    margin-left: 10px;
+}
+.article_area.more .ar_list{
+    height: auto;
+    overflow: auto;
+}
+.more_btn,
+.hide_btn{
+    position: absolute;
+    right: 0;
+    bottom: -30px;
+    font-size: 16px;
+    color: #00a1d6;
+    cursor: pointer;
+}
+.ar_list{
+    height: 200px;
+    overflow: hidden;
+}
+.ar_item{
+    display: inline-block;
+    font-weight: 700;
+    margin-top: 30px;
+    margin-right: 45px;
+}
+.ar_item:nth-of-type(5n + 5){
+    margin-right: 0px;
+}
+.ar_item a{
+    display: inline-block;
+    width: 110px;
+    line-height: 30px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-align: center;
+}
+.ar_item a:hover{
+    color: #00a1d6;
+}
+.ar_item .ar_btn{
+    display: inline-block;
+    float: right;
+    width: 80px;
+    height: 30px;
+    color: #ffffff;
+    font-weight: 700;
+    line-height: 30px;
+    background-color: #00a1d6;
+    border-radius: 4px;
+    text-align: center;
+    cursor: pointer;
+}
+.ar_item .ar_btn:hover{
+    color: #ffffff;
+}
+.article_area,
+.book_area,
+.sub_area{
+    position: relative;
+}
+.book_area .book_list{
+    height: 300px;
+    overflow: hidden;
+}
+.sub_area .book_list{
+    height: 260px;
+    overflow: hidden;
+}
+.book_area.more .book_list,
+.sub_area.more .book_list{
+    height: auto;
+}
+.article_area .btn,
+.book_area .btn,
+.sub_area .btn{
+    position: absolute;
+    top: 20px;
+    right: 0;
+    color: #00a1d6;
+    font-weight: 700;
+    cursor: pointer;
+}
+.book_area .book_item,
+.sub_area .book_item{
+    display: inline-block;
+    margin-right: 38px;
+    margin-top: 20px;
+    text-align: center;
+}
+.book_area .book_item .book_info:hover,
+.sub_area .book_item .book_info:hover{
+    color: #00a1d6;
+}
+.book_area .cover,
+.sub_area .cover{
+    width: 150px;
+    height: 200px;
+    border-radius: 4px;
+}
+.book_area .book_title,
+.sub_area .book_title{
+    width: 150px;
+    line-height: 26px;
+    font-size: 16px;
+    font-weight: 700;
+    text-align: center;
+    margin-top: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.book_area .button{
+    display: inline-block;
+    width: 80px;
+    height: 30px;
+    color: #ffffff;
+    font-weight: 700;
+    line-height: 30px;
+    background-color: #00a1d6;
+    border-radius: 4px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+.my_fans .fans_list,
+.my_follow .follow_list{
+    margin-top: 20px;
+}
+.my_fans .fan_item,
+.my_follow .follow_item{
+    display: inline-block;
+    margin-right: 40px;
+    text-align: center;
+}
+.my_fans .fan_item a:hover,
+.my_follow .follow_item a:hover{
+    color: #00a1d6;
+}
+.my_fans .avatar,
+.my_follow .avatar{
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+}
+.my_fans .name,
+.my_follow .name{
+    width: 80px;
+    margin-top: 5px;
+    font-size: 16px;
+    font-weight: 700;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.part{
+    margin-top: 50px;
+}
+.my_follow .button{
+    width: 80px;
+    height: 30px;
+    color: #ffffff;
+    font-weight: 700;
+    line-height: 30px;
+    background-color: #00a1d6;
+    border-radius: 4px;
+    margin-top: 12px;
+    cursor: pointer;
+}
+
+.upload_book_box{
+    position: fixed;
+    display: none;
+    top: 50%;
+    left: 50%;
+    transform: translate3d(-50%,-50%,0);
+    width: 600px;
+    height: 400px;
+    border: 2px solid #cccccc;
+    background-color: #ffffff;
+    z-index: 100;
+}
+.upload_book_box.show{
+    display: block;
+}
+.upload_book_box .close_btn{
+    float: right;
+    cursor: pointer;
+}
+.upload_book_box .cover_img{
+    width: 150px;
+    height: 200px;
+}

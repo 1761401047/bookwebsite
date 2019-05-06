@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>文章详情</title>
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/base.css">
+    <link rel="stylesheet" href="./css/articleDetail.css">
+    <script src="./js/vue.js"></script>
+    <script src="./js/vuex.js"></script>
+    <script src="./js/axios.js"></script>
+    <script src="./js/cookieUtil.js"></script>
+</head>
+<body>
+    <header class="header">
+        <div class="header_in" id="header_info">
+            <div class="right_side">
+                <a href="/userCenter.html" target="_blank" class="avatar">
+                    <img :src="'/getAvatarByUid?uid=' + uid" alt="">
+                    <span class="user_name">{{userName}}</span>
+                </a>
+                <a href="/editArticle.html" target="_blank" class="w_ar">发表文章</a>
+            </div>
+        </div>
+    </header>
+    <div class="banner">
+        <div class="banner_in">
+            <div class="search_box">
+                <input type="text">
+                <div class="button"></div>
+            </div>
+        </div>
+    </div>
+    <div class="content" id="ar_detail">
+        <div class="title">{{article.title}}</div>
+        <div class="info_area">
+            <a :href="article.uid == myUid ? '/userCenter.html' : '/userInfo.html?uid=' + article.uid" target="_blank"><img :src="authorInfo.avatar ? '/getAvatar?path=' + authorInfo.avatar : '../img/avatar.png'" class="avatar"></a>
+            <div class="info">
+                <div class="author_name">{{article.u_name}}</div>
+                <div class="text_info">
+                    <div class="view"><span class="icon"></span>{{article.views > 10000 ? (article.views / 10000).toFixed(1) +"万" : article.views}}</div>
+                    <div class="date">{{new Date(article.c_time * 1000).toLocaleDateString().replace(/\//g,'-')}}</div>
+                </div>
+            </div>
+        </div>
+        <div class="cont" v-html="article.content"></div>
+    </div>
+    <div class="comment" id="comment_area">
+        <h1 class="title">评论</h1>
+        <div class="write_comment comment_box">
+            <img :src="'/getAvatarByUid?uid=' + myUid" alt="" class="avatar">
+            <textarea placeholder="谈谈你的看法吧" id="comment_content" v-model="comment"></textarea>
+            <div class="submit_btn" @click="submitComment">发表评论</div>
+        </div>
+        <ul class="cm_list">
+            <li class="cm_item" v-for="comment in commentList">
+                <div class="user_info">
+                    <a :href="comment.uid == myUid ? '/userCenter.html' : '/userInfo.html?uid=' + comment.uid" target="_blank"><img :src="'/getAvatarByUid?uid=' + comment.uid" alt="" class="avatar"></a>
+                    <div class="info">
+                        <p class="user_name">{{comment.user_name}}</p>
+                        <p class="date">{{new Date(comment.c_time * 1000).toLocaleDateString().replace(/\//g,'-')}} {{new Date(comment.c_time * 1000).toTimeString().split(" ")[0]}}</p>
+                    </div>
+                </div>
+                <div class="cont">{{comment.content}}</div>
+                <div class="bottom">
+                    <div class="thumbs-up" @click="thumbsUp(comment.id)"><span class="text">点赞</span><span class="count" :ref="'thup' + comment.id">{{comment.thumbs_up}}</span></div>
+                    <div class="reply_btn" :data-super_id="comment.id" :data-parent_id="comment.id" :data-parent_name="comment.user_name" @click="clickReplyBtn">回复</div>
+                </div>
+                <ul class="reply">
+                   <li class="reply_item" v-for="childComment in comment.children">
+                       <div class="user_info">
+                           <a :href="childComment.uid == myUid ? '/userCenter.html' : '/userInfo.html?uid=' + childComment.uid" target="_blank"><img :src="'/getAvatarByUid?uid=' + childComment.uid" alt="" class="avatar"></a>
+                           <div class="info">
+                               <p class="user_name">{{childComment.user_name}}</p>
+                               <p class="date">{{new Date(childComment.c_time * 1000).toLocaleDateString().replace(/\//g,'-')}} {{new Date(childComment.c_time * 1000).toTimeString().split(" ")[0]}}</p>
+                           </div>
+                       </div>
+                       <div class="cont">回复 @{{childComment.parent_name}}：{{childComment.content}}</div>
+                       <div class="bottom">
+                           <div class="thumbs-up" @click="thumbsUp(childComment.id)"><span class="text">点赞</span><span class="count" :ref="'thup' + childComment.id">{{childComment.thumbs_up}}</span></div>
+                           <div class="reply_btn" :data-super_id="comment.id" :data-parent_id="childComment.id" :data-parent_name="childComment.user_name" @click="clickReplyBtn">回复</div>
+                       </div>
+                   </li>
+                </ul>
+                <div class="reply_box comment_box" v-if="comment.id == super_id">
+                    <img :src="'/getAvatarByUid?uid=' + myUid" alt="" class="avatar">
+                    <textarea v-model="reply_comment" placeholder="谈谈你的看法吧"></textarea>
+                    <div class="submit_btn" @click="replayComent">回复</div>
+                </div>
+            </li>
+            <ul class="paging" @click="clickPaging">
+                <li v-for="item in pageArr" :data-page_index="item.page" :class="{active:item.text == nowPage}">{{item.text}}</li>
+            </ul>
+        </ul>
+    </div>
+    <script src="./js/base.js"></script>
+    <script src="./js/articleDetail.js"></script>
+</body>
+</html>

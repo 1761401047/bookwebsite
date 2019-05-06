@@ -1,0 +1,23 @@
+body{
+    margin-bottom: 100px;
+}
+.container{
+    width: 960px;
+}
+#editor{
+    height: 600px;
+}
+.submitBtn{
+    float: right;
+    width: 100px;
+    height: 40px;
+    border-radius: 4px;
+    background-color: #00a1d6;
+    color: #f1f1f1;
+    font-size: 28px;
+    font-weight: 700;
+    text-align: center;
+    line-height: 40px;
+    margin-top: 20px;
+    cursor: pointer;
+}

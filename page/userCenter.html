@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>个人中心</title>
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/base.css">
+    <link rel="stylesheet" href="./css/userCenter.css">
+    <script src="./js/vue.js"></script>
+    <script src="./js/vuex.js"></script>
+    <script src="./js/axios.js"></script>
+    <script src="./js/cookieUtil.js"></script>
+</head>
+<body>
+    <header class="header">
+        <div class="header_in" id="header_info">
+            <div class="right_side">
+                <a href="/userCenter.html" target="_blank" class="avatar">
+                    <img :src="'/getAvatar?path=' + $store.state.avatar" alt="">
+                    <span class="user_name">{{userName}}</span>
+                </a>
+                <a href="/editArticle.html" target="_blank" class="w_ar">发表文章</a>
+            </div>
+        </div>
+    </header>
+    <div class="banner" id="banner">
+        <div class="user_box">
+            <div class="avatar_area">
+                <img :src="'/getAvatar?path=' + myInfo.avatar" alt="" class="avatar">
+                <div class="upload_avatar">
+                    <div class="button">修改头像</div>
+                    <input type="file" accept="image/*" @change="changeAvatar">
+                </div>
+            </div>
+            <span class="user_name">{{userName}}</span>
+        </div>
+        <div class="coin"><span class="text">换书币：</span><span class="num">{{$store.state.coin}}</span></div>
+        <div class="bg"></div>
+    </div>
+    <div class="main">
+        <div class="article_area part" :class="{more:isMore}" id="article_area">
+            <div class="title">我的文章</div>
+            <a href="/editArticle.html" target="_blank" class="btn">发表文章</a>
+            <ul class="ar_list">
+                <li class="ar_item" v-for="article in articleArr">
+                    <a :href="'/articleDetail.html?id=' + article.id" target="_blank" :title="article.title">{{article.title}}</a>
+                    <div class="ar_btn" @click="deleteArticle(article.id,article.title)">删除</div>
+                </li>
+            </ul>
+            <div v-if="articleArr.length > 15 && !isMore" class="more_btn" @click="showMore">展开</div>
+            <div v-if="articleArr.length > 15 && isMore" class="hide_btn" @click="hideMore">收起</div>
+        </div>
+        <div class="book_area part" id="book_area" :class="{more:isMore}">
+            <div class="title">我的书籍</div>
+            <div class="btn" @click="openBookbox">上传书籍</div>
+            <ul class="book_list">
+                <li class="book_item" v-for="book in bookList">
+                    <a :href="'/bookDetail.html?bid=' + book.id" target="_blank" class="book_info">
+                        <img :src="'/getBookPic?path=' + book.cover_path" alt="" class="cover">
+                        <p class="book_title">{{book.title}}</p>
+                    </a>
+                    <div class="button" @click="deleteBook(book.id,book.title)">删除</div>
+                </li>
+            </ul>
+            <div v-if="bookList.length > 6 && !isMore" class="more_btn" @click="showMore">展开</div>
+            <div v-if="bookList.length > 6 && isMore" class="hide_btn" @click="hideMore">收起</div>
+            <div class="upload_book_box" :class="{show:bookBoxShow}">
+                <div class="close_btn" @click="closeBookbox">close</div>
+                <input class="book_name" type="text" v-model="bookName" placeholder="请输入书籍名称">
+                <select ref="tagEle">
+                    <option value="小说">小说</option>
+                    <option value="文学">文学</option>
+                    <option value="动漫">动漫</option>
+                    <option value="历史">历史</option>
+                    <option value="传记">传记</option>
+                    <option value="艺术">艺术</option>
+                    <option value="体育">体育</option>
+                    <option value="心理">心理</option>
+                    <option value="文化">文化</option>
+                    <option value="经济">经济</option>
+                    <option value="管理">管理</option>
+                    <option value="科普">科普</option>
+                    <option value="其他">其他</option>
+                </select>
+                <input ref="coverImg" type="file" accept="image/*" @change="changeImg">
+                <img :src="coverUrl" alt="" class="cover_img">
+                <textarea class="book_desc" v-model="bookDesc"></textarea>
+                <div class="upload_btn" @click="upload">确定上传</div>
+            </div>
+        </div>
+        <div class="mySub_area sub_area part" id="mySub_area" :class="{more:isMore}">
+            <div class="title">我的订阅</div>
+            <ul class="book_list">
+                <li class="book_item" v-for="book in subBookList">
+                    <a :href="'/bookDetail.html?bid=' + book.id" target="_blank" class="book_info">
+                        <img :src="'/getBookPic?path=' + book.cover_path" alt="" class="cover">
+                        <p class="book_title">{{book.title}}</p>
+                    </a>
+                    <div class="master_info">
+                        <div class="m_title">书主信息</div>
+                        <ul class="list">
+                            <li class="item"><span class="text">用户名：</span><span class="name">{{book.userInfo.user_name}}</span></li>
+                            <li class="item"><span class="text">QQ：</span><span class="qq">{{book.userInfo.qqNum}}</span></li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+            <div v-if="subBookList.length > 6 && !isMore" class="more_btn" @click="showMore">展开</div>
+            <div v-if="subBookList.length > 6 && isMore" class="hide_btn" @click="hideMore">收起</div>
+        </div>
+        <div class="subed_area sub_area part" id="subed_area" :class="{more:isMore}">
+            <div class="title">外借书籍</div>
+            <ul class="book_list">
+                <li class="book_item" v-for="book in subedBookList">
+                    <a :href="'/bookDetail.html?bid=' + book.id" target="_blank" class="book_info">
+                        <img :src="'/getBookPic?path=' + book.cover_path" alt="" class="cover">
+                        <p class="book_title">{{book.title}}</p>
+                    </a>
+                    <div class="subUser_info">
+                        <div class="m_title">订阅用户信息</div>
+                        <ul class="list">
+                            <li class="item"><span class="text">用户名：</span><span class="name">{{book.userInfo.user_name}}</span></li>
+                            <li class="item"><span class="text">QQ：</span><span class="qq">{{book.userInfo.qqNum}}</span></li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+            <div v-if="subedBookList.length > 6 && !isMore" class="more_btn" @click="showMore">展开</div>
+            <div v-if="subedBookList.length > 6 && isMore" class="hide_btn" @click="hideMore">收起</div>
+        </div>
+        <div class="my_fans part" id="fans_area">
+            <div class="title">我的粉丝</div>
+            <ul class="fans_list">
+                <li class="fan_item" v-for="fans in fansArr">
+                    <a :href="'/userInfo.html?uid=' + fans.id" target="_blank">
+                        <img :src="'/getAvatarByUid?uid=' + fans.id" alt="" class="avatar">
+                        <p class="name">{{fans.user_name}}</p>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="my_follow part" id="follow_area">
+            <div class="title">我的关注</div>
+            <ul class="follow_list">
+                <li class="follow_item"  v-for="follow in followArr">
+                    <a :href="'/userInfo.html?uid=' + follow.id" target="_blank">
+                        <img :src="'/getAvatarByUid?uid=' + follow.id" alt="" class="avatar">
+                        <p class="name">{{follow.user_name}}</p>
+                    </a>
+                    <div class="button" @click="cancelFollow(follow.id,follow.user_name)">取消关注</div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <script src="./js/userCenter.js"></script>
+</body>
+</html>

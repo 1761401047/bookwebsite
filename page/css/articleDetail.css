@@ -1,0 +1,127 @@
+.content{
+    width: 960px;
+    margin: 0 auto;
+}
+.content .title{
+    font-size: 34px;
+    font-weight: 700;
+    margin-top: 50px;
+}
+.content .info_area{
+    height: 50px;
+    margin-top: 20px;
+}
+.content .info_area .info{
+    height: 100%;
+    vertical-align: middle;
+}
+.content .info_area .avatar{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    vertical-align: middle;
+    margin-right: 5px;
+}
+.content .info_area .info{
+    display: inline-block;
+}
+.info_area .author_name,.info_area .text_info{
+    margin: 6px 0;
+}
+
+.info_area .text_info div{
+    display: inline-block;
+}
+.content .cont{
+    margin-top: 50px;
+    line-height: 35px;
+}
+.comment{
+    width: 960px;
+    margin: 100px auto 200px;
+}
+.comment .title{
+    font-size: 30px;
+    font-weight: 700;
+}
+.comment .comment_box{
+    margin-top: 50px;
+}
+.comment .comment_box .avatar{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    vertical-align: top;
+    margin-right: 5px;
+}
+.comment .comment_box textarea{
+    width: 600px;
+    height: 100px;
+    outline: none;
+    border-radius: 5px;
+    padding: 10px;
+    box-sizing: border-box;
+    vertical-align: top;
+    font-size: 14px;
+    margin-right: 5px;
+}
+.comment .comment_box .submit_btn{
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+    font-size: 20px;
+    vertical-align: top;
+    text-align: center;
+    line-height: 100px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    background-color: #00a1d6;
+    color: #ffffff;
+    font-size: 700;
+    border-radius: 5px;
+}
+.cm_list{
+    margin-top: 50px;
+}
+.cm_list .user_info .avatar{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    vertical-align: middle;
+}
+.cm_list .user_info .info{
+    display: inline-block;
+    height: 50px;
+    vertical-align: middle;
+}
+.cm_list .user_info .info p{
+    margin-top: 5px;
+}
+.cm_item{
+    margin-top: 50px;
+    width: 820px;
+}
+.cm_item .cont{
+    margin-left: 50px;
+    color: #333333;
+    line-height: 24px;
+}
+.cm_item .bottom{
+    margin-top: 20px;
+    margin-left: 50px;
+}
+.cm_item .bottom div{
+    display: inline-block;
+    cursor: pointer;
+}
+.cm_item .reply{
+    margin-left: 50px;
+    margin-top: 30px;
+}
+.cm_item .reply_box{
+    margin-left: 50px;
+}
+.reply_item{
+    margin-top: 20px;
+}
+

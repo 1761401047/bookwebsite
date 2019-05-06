@@ -1,0 +1,73 @@
+.content{
+    width: 960px;
+    margin: 0 auto;
+    margin-bottom: 200px;
+}
+.content .info_area{
+    height: 50px;
+    margin-top: 20px;
+}
+.content .info_area .info{
+    height: 100%;
+    vertical-align: middle;
+}
+.content .info_area .avatar{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 5px;
+    vertical-align: middle;
+}
+.content .info_area .info{
+    display: inline-block;
+}
+.info_area .author_name,.info_area .text_info{
+    margin: 6px 0;
+}
+
+.info_area .text_info div{
+    display: inline-block;
+}
+.content .cont{
+    margin-top: 50px;
+}
+.content .cont .book_name{
+    font-size: 34px;
+    font-weight: 700;
+    margin-top: 50px;
+}
+.content .cont .cover{
+    width: 150px;
+    height: 200px;
+    margin-top: 20px;
+    border-radius: 4px;
+}
+.content .cont .desc{
+    margin-top: 20px;
+}
+.content .sub_btn{
+    width: 150px;
+    height: 50px;
+    background-color: #00a1d6;
+    color: #ffffff;
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 50px;
+    text-align: center;
+    border-radius: 4px;
+    margin-top: 50px;
+    cursor: pointer;
+}
+.content .sub_btn.subed{
+    background-color: #cccccc;
+    cursor: auto;
+}
+.content .cont .desc{
+    line-height: 34px;
+    color: #333333;
+}
+.content .cont .desc .text{
+    font-size: 24px;
+    font-weight: 700;
+    color: #000000;
+}

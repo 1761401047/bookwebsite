@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>个人主页</title>
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/base.css">
+    <link rel="stylesheet" href="./css/userCenter.css">
+    <script src="./js/vue.js"></script>
+    <script src="./js/vuex.js"></script>
+    <script src="./js/axios.js"></script>
+    <script src="./js/cookieUtil.js"></script>
+</head>
+<body>
+<header class="header">
+    <div class="header_in" id="header_info">
+        <div class="right_side">
+            <a href="/userCenter.html" target="_blank" class="avatar">
+                <img :src="'/getAvatarByUid?uid=' + uid" alt="">
+                <span class="user_name">{{userName}}</span>
+            </a>
+            <a href="/editArticle.html" target="_blank" class="w_ar">发表文章</a>
+        </div>
+    </div>
+</header>
+<div class="banner" id="banner">
+    <div class="user_box userInfo">
+        <img :src="'/getAvatarByUid?uid=' + uid" alt="" class="avatar">
+        <div class="rg_side">
+            <span class="user_name">{{userName}}</span>
+            <div class="btn" v-if="!isFollowed" @click="follow">关注</div>
+            <div class="btn dis_btn" v-else @click="cancelFollow">取消关注</div>
+        </div>
+    </div>
+    <div class="bg"></div>
+</div>
+<div class="main">
+    <div class="article_area part" :class="{more:isMore}" id="article_area">
+        <div class="title">他的文章</div>
+        <ul class="ar_list">
+            <li class="ar_item" v-for="article in articleArr">
+                <a :href="'/articleDetail.html?id=' + article.id" target="_blank" :title="article.title">{{article.title}}</a>
+                <a :href="'/articleDetail.html?id=' + article.id" target="_blank" class="ar_btn">阅读</a>
+            </li>
+        </ul>
+        <div v-if="articleArr.length > 15 && !isMore" class="more_btn" @click="showMore">展开</div>
+        <div v-if="articleArr.length > 15 && isMore" class="hide_btn" @click="hideMore">收起</div>
+    </div>
+    <div class="book_area part" id="book_area">
+        <div class="title">他的书籍</div>
+        <ul class="book_list">
+            <li class="book_item" v-for="book in bookList">
+                <a :href="'/bookDetail.html?bid=' + book.id" target="_blank" class="book_info">
+                    <img :src="'/getBookPic?path=' + book.cover_path" alt="" class="cover">
+                    <p class="book_title">{{book.title}}</p>
+                </a>
+                <a :href="'/bookDetail.html?bid=' + book.id" target="_blank" class="button">查看详情</a>
+            </li>
+        </ul>
+    </div>
+    <div class="my_fans part" id="fans_area">
+        <div class="title">他的粉丝</div>
+        <ul class="fans_list">
+            <li class="fan_item" v-for="fans in $store.state.fansArr">
+                <a :href="fans.id == $store.state.myUid ? '/userCenter.html' : '/userInfo.html?uid=' + fans.id" target="_blank">
+                    <img :src="'/getAvatarByUid?uid=' + fans.id" alt="" class="avatar">
+                    <p class="name">{{fans.user_name}}</p>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="my_follow part" id="follow_area">
+        <div class="title">他的关注</div>
+        <ul class="follow_list">
+            <li class="follow_item" v-for="follow in followArr">
+                <a :href="follow.id == $store.state.myUid ? '/userCenter.html' : '/userInfo.html?uid=' + follow.id" target="_blank">
+                    <img :src="'/getAvatarByUid?uid=' + follow.id" alt="" class="avatar">
+                    <p class="name">{{follow.user_name}}</p>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+<script src="./js/base.js"></script>
+<script src="./js/userInfo.js"></script>
+</body>
+</html>

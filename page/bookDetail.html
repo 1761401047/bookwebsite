@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>书籍详情</title>
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/base.css">
+    <link rel="stylesheet" href="./css/bookDetail.css">
+    <script src="./js/vue.js"></script>
+    <script src="./js/axios.js"></script>
+    <script src="./js/cookieUtil.js"></script>
+</head>
+<body>
+    <header class="header">
+        <div class="header_in" id="header_info">
+            <div class="right_side">
+                <a href="/userCenter.html" target="_blank" class="avatar">
+                    <img :src="'/getAvatarByUid?uid=' + uid" alt="">
+                    <span class="user_name">{{userName}}</span>
+                </a>
+                <a href="/editArticle.html" target="_blank" class="w_ar">发表文章</a>
+            </div>
+        </div>
+    </header>
+    <div class="banner">
+        <div class="banner_in">
+            <div class="search_box">
+                <input type="text">
+                <div class="button"></div>
+            </div>
+        </div>
+    </div>
+    <div class="content" id="book_detail">
+        <div class="info_area">
+            <a :href="bookInfo.uid == myUid ? '/userCenter.html' : '/userInfo.html?uid=' + bookInfo.uid" target="_blank"><img :src="'/getAvatarByUid?uid=' + bookInfo.uid" alt="" class="avatar"></a>
+            <div class="info">
+                <div class="author_name">{{bookInfo.uname}}</div>
+                <div class="text_info">
+                    <div class="date">{{new Date(bookInfo.c_time * 1000).toLocaleDateString().replace(/\//g,'-')}}</div>
+                </div>
+            </div>
+        </div>
+        <div class="cont">
+            <div class="book_name">{{bookInfo.title}}</div>
+            <img :src="'/getBookPic?path=' + bookInfo.cover_path" alt="" class="cover">
+            <div class="desc"><span class="text">简介：</span>{{bookInfo.content}}</div>
+        </div>
+        <div v-if="bookInfo.uid != myUid && !isSub" class="sub_btn" @click="subscribe">订阅</div>
+        <div v-if="isSub" class="sub_btn subed">已订阅</div>
+    </div>
+    <script src="./js/base.js"></script>
+    <script src="./js/bookDetail.js"></script>
+</body>
+</html>

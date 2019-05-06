@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>图书分享</title>
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/base.css">
+    <link rel="stylesheet" href="./css/index.css">
+    <script src="./js/vue.js"></script>
+    <script src="./js/axios.js"></script>
+</head>
+<body>
+    <header class="header">
+        <div class="header_in" id="header_info">
+            <div class="right_side">
+                <a href="/userCenter.html" target="_blank" class="avatar">
+                    <img :src="'/getAvatarByUid?uid=' + uid" alt="">
+                    <span class="user_name">{{userName}}</span>
+                </a>
+                <a href="/editArticle.html" target="_blank" class="w_ar">发表文章</a>
+            </div>
+        </div>
+    </header>
+    <div class="banner">
+        <div class="banner_in">
+            <div class="search_box">
+                <input type="text">
+                <div class="button"></div>
+            </div>
+        </div>
+    </div>
+    <div class="content">
+        <div class="hot_ar category" id="hot_ar">
+            <div class="title">
+                <span class="icon"></span>
+                <span class="text">热门推荐</span>
+            </div>
+            <ul class="article_list">
+                <li class="article_item" v-for="article in hotArticleList">
+                    <div class="lf_side">
+                        <a v-bind:href="'/articleDetail.html?id=' + article.id" target="_blank" class="main">
+                            <div class="title">{{article.title}}</div>
+                            <div class="cont" v-html="article.content.replace(/<img[\w\W]*>/g, '').replace(/<[\w\W]{1,5}>/g, '')"></div>
+                        </a>
+                        <div class="bottom">
+                            <div class="author">{{article.u_name}}</div>
+                            <div class="view"><span class="icon"></span>{{article.views > 10000 ? (article.views / 10000).toFixed(1) +"万" : article.views}}</div>
+<!--                            <div class="comment"><span class="icon"></span></div>-->
+                            <div class="date">{{new Date(article.c_time * 1000).toLocaleDateString().replace(/\//g,'-')}}</div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="new_ar category" id="new_ar">
+            <div class="title">
+                <span class="icon"></span>
+                <span class="text">最新文章</span>
+            </div>
+            <ul class="article_list">
+                <li class="article_item" v-for="article in newArticleList">
+                    <div class="lf_side">
+                        <a v-bind:href="'/articleDetail.html?id=' + article.id" target="_blank" class="main">
+                            <div class="title">{{article.title}}</div>
+                            <div class="cont" v-html="article.content.replace(/<img[\w\W]*>/g, '').replace(/<[\w\W]{1,5}>/g, '')"></div>
+                        </a>
+                        <div class="bottom">
+                            <div class="author">{{article.u_name}}</div>
+                            <div class="view"><span class="icon"></span>{{article.views}}</div>
+                            <!-- <div class="comment"><span class="icon"></span></div>-->
+                            <div class="date">{{new Date(article.c_time * 1000).toLocaleDateString().replace(/\//g,'-')}}</div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <ul class="ar_group" id="ar_cate">
+            <li class="cate_item category" v-for="articletype in articleMapList">
+                <a v-bind:href="'/category.html?tag=' + articletype.tag" target="_blank" class="title type_title">
+                    <span class="icon"></span>
+                    <span class="text">{{articletype.tag}}</span>
+                </a>
+                <ul class="article_list">
+                    <li class="article_item" v-for="article in articletype.content">
+                        <div class="lf_side">
+                            <a v-bind:href="'/articleDetail.html?id=' + article.id" target="_blank" class="main">
+                                <div class="title">{{article.title}}</div>
+                                <div class="cont" v-html="article.content.replace(/<img[\w\W]*>/g, '').replace(/<[\w\W]{1,5}>/g, '')"></div>
+                            </a>
+                            <div class="bottom">
+                                <div class="author">{{article.u_name}}</div>
+                                <div class="view"><span class="icon"></span>{{article.views}}</div>
+                                <!--<div class="comment"><span class="icon"></span></div>-->
+                                <div class="date">{{new Date(article.c_time * 1000).toLocaleDateString().replace(/\//g,'-')}}</div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <script src="./js/base.js"></script>
+    <script src="./js/index.js"></script>
+</body>
+</html>
