@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>图书分享</title>
+    <title>文章分享</title>
     <link rel="stylesheet" href="./css/reset.css">
     <link rel="stylesheet" href="./css/base.css">
     <link rel="stylesheet" href="./css/index.css">
@@ -45,7 +45,6 @@
                         <div class="bottom">
                             <div class="author">{{article.u_name}}</div>
                             <div class="view"><span class="icon"></span>{{article.views > 10000 ? (article.views / 10000).toFixed(1) +"万" : article.views}}</div>
-<!--                            <div class="comment"><span class="icon"></span></div>-->
                             <div class="date">{{new Date(article.c_time * 1000).toLocaleDateString().replace(/\//g,'-')}}</div>
                         </div>
                     </div>
@@ -67,7 +66,6 @@
                         <div class="bottom">
                             <div class="author">{{article.u_name}}</div>
                             <div class="view"><span class="icon"></span>{{article.views}}</div>
-                            <!-- <div class="comment"><span class="icon"></span></div>-->
                             <div class="date">{{new Date(article.c_time * 1000).toLocaleDateString().replace(/\//g,'-')}}</div>
                         </div>
                     </div>
@@ -80,6 +78,7 @@
                     <span class="icon"></span>
                     <span class="text">{{articletype.tag}}</span>
                 </a>
+                <a v-bind:href="'/category.html?tag=' + articletype.tag" target="_blank" class="more_button">更多</a>
                 <ul class="article_list">
                     <li class="article_item" v-for="article in articletype.content">
                         <div class="lf_side">
@@ -90,7 +89,6 @@
                             <div class="bottom">
                                 <div class="author">{{article.u_name}}</div>
                                 <div class="view"><span class="icon"></span>{{article.views}}</div>
-                                <!--<div class="comment"><span class="icon"></span></div>-->
                                 <div class="date">{{new Date(article.c_time * 1000).toLocaleDateString().replace(/\//g,'-')}}</div>
                             </div>
                         </div>
@@ -99,6 +97,7 @@
             </li>
         </ul>
     </div>
+    <a href="/bookIndex.html" target="_blank" class="aside">借阅书籍</a>
     <script src="./js/base.js"></script>
     <script src="./js/index.js"></script>
 </body>

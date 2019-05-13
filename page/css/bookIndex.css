@@ -1,0 +1,69 @@
+.content{
+    width: 960px;
+    margin: 0 auto;
+}
+
+.category >.title {
+    display: inline-block;
+    height: 40px;
+    padding: 10px 0;
+    margin-left: -25px;
+}
+.category >.title:hover .text{
+   color: #00a1d6;
+}
+.category >.title .icon {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    background-image: url(../img/sprites.png);
+    background-position: -141px -75px;
+    vertical-align: middle;
+}
+
+.category >.title .text {
+    display: inline-block;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 40px;
+    color: #000;
+    vertical-align: middle;
+}
+.cate_item{
+    position: relative;
+    margin-top: 30px;
+}
+.cate_item .more_button {
+    position: absolute;
+    right: 10px;
+    top: 30px;
+    font-weight: 700;
+}
+.cate_item .more_button:hover{
+    color: #00a1d6;
+}
+
+.book_item{
+    display: inline-block;
+    margin: 15px 20px;
+}
+.book_item:hover .book_name{
+    color: #00a1d6;
+}
+.book_item .cover{
+    width: 150px;
+    height: 200px;
+    border-radius: 4px;
+}
+
+.book_item .book_name{
+    width: 150px;
+    line-height: 26px;
+    font-size: 16px;
+    font-weight: 700;
+    text-align: center;
+    margin-top: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}

@@ -30,6 +30,21 @@ function queryBookByUid(uid,success) {
     connection.end();
 }
 
+function queryBookByTag(tag,page,pageSize,success) {
+    var querySql = "select * from book where tag = ? and state = 1 order by id desc limit ?, ?;";
+    var params = [tag,page * pageSize, pageSize];
+    var connection = dbutil.createConnection();
+    connection.connect();
+    connection.query(querySql, params, function (error, result) {
+        if (error == null) {
+            success(result);
+        } else {
+            console.log(error);
+        }
+    });
+    connection.end();
+}
+
 function deleteBookById(id,success) {
     var deleteSql = "delete from book where id = ?;";
     var params = [id];
@@ -80,3 +95,5 @@ module.exports.queryBookByUid = queryBookByUid;
 module.exports.deleteBookById = deleteBookById;
 module.exports.queryBookByBookid = queryBookByBookid;
 module.exports.updateBookState = updateBookState;
+module.exports.queryBookByTag = queryBookByTag;
+

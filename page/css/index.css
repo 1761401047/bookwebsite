@@ -7,6 +7,7 @@ body{
     margin: 0 auto;
 }
 .category{
+    position: relative;
     margin-top: 40px;
 }
 .category >.title{
@@ -93,5 +94,30 @@ body{
     color: #00a1d6;
 }
 .ar_group .type_title:hover .text{
-    color: #f40;
+    color: #00a1d6;
+}
+.ar_group .more_button{
+    position: absolute;
+    right: 10px;
+    top: 30px;
+    font-weight: 700;
+}
+.ar_group .more_button:hover{
+    color: #00a1d6;
+}
+.aside{
+    position: fixed;
+    top: 268px;
+    right: 290px;
+    width: 100px;
+    height: 100px;
+    font-size: 30px;
+    line-height: 40px;
+    text-align: center;
+    font-weight: 700;
+    color: #ffffff;
+    background-color: #00a1d6;
+    border-radius: 5px;
+    padding: 10px;
+    box-sizing: border-box;
 }

@@ -190,4 +190,36 @@ function getBeSubedBook(request, response){
 }
 path.set("/getBeSubedBook", getBeSubedBook);
 
+function getBookList(request, response){
+    TagDao.queryAllTag(function (result1) {
+        var len = result1.length;
+        var resArr = [];
+        for(var i = 0; i < len; i++){
+            var tag = result1[i].tag;
+            (function (i) {
+                BookDao.queryBookByTag(tag,0,5,function (result2) {
+                    var tag = result1[i].tag;
+                    var tid = result1[i].id;
+                    resArr[i] = {};
+                    resArr[i].tag = tag;
+                    resArr[i].tid = tid;
+                    resArr[i].content = result2;
+                })
+            })(i)
+        }
+        var timer = setInterval(function () {
+            if(resArr.length = len){
+                response.writeHead(200, {
+                    "Content-Type": "text/html; charset=utf-8"
+                });
+                response.write(respUtil.writeResult("success", "查询成功", resArr));
+                response.end();
+                clearInterval(timer);
+            }
+        },100);
+
+    })
+}
+path.set("/getBookList", getBookList);
+
 module.exports.path = path;

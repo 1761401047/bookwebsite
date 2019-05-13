@@ -51,6 +51,8 @@ app.get("/getBeSubedBook",loader.get("/getBeSubedBook"));
 app.post("/uploadAvatar",uploadTool.single("file"),loader.get("/uploadAvatar"));
 app.get("/getAvatar",loader.get("/getAvatar"));
 app.get("/getAvatarByUid",loader.get("/getAvatarByUid"));
+app.get("/getBookList",loader.get("/getBookList"));
+
 
 
 app.listen(globalConfig.port, function() {

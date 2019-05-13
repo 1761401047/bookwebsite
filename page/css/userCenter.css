@@ -385,3 +385,16 @@ body{
     width: 150px;
     height: 200px;
 }
+.upload_book_box .upload_btn{
+    width: 100px;
+    height: 40px;
+    background-color: #00a1d6;
+    border-radius: 4px;
+    margin: 0 auto;
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 700;
+    text-align: center;
+    line-height: 40px;
+    margin-top: 40px;
+}

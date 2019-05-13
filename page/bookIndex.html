@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>图书分享</title>
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/base.css">
+    <link rel="stylesheet" href="./css/bookIndex.css">
+    <script src="./js/vue.js"></script>
+    <script src="./js/axios.js"></script>
+</head>
+<body>
+    <header class="header">
+        <div class="header_in" id="header_info">
+            <div class="right_side">
+                <a href="/userCenter.html" target="_blank" class="avatar">
+                    <img :src="'/getAvatarByUid?uid=' + uid" alt="">
+                    <span class="user_name">{{userName}}</span>
+                </a>
+                <a href="/editArticle.html" target="_blank" class="w_ar">发表文章</a>
+            </div>
+        </div>
+    </header>
+    <div class="banner">
+        <div class="banner_in">
+            <div class="search_box">
+                <input type="text">
+                <div class="button"></div>
+            </div>
+        </div>
+    </div>
+    <div class="content">
+        <ul class="book_group" id="book_cate">
+            <li class="cate_item category" v-for="bookType in bookList">
+                <a :href="'/bookCategory.html?tag=' + bookType.tag" target="_blank" class="title">
+                    <span class="icon"></span>
+                    <span class="text">{{bookType.tag}}</span>
+                </a>
+                <a :href="'/bookCategory.html?tag=' + bookType.tag" target="_blank" class="more_button">更多</a>
+                <ul class="book_list">
+                    <li class="book_item" v-for="book in bookType.content">
+                        <a :href="'/bookDetail.html?bid=' + book.id" target="_blank">
+                            <img :src="'/getBookPic?path=' + book.cover_path" alt="" class="cover">
+                            <div class="book_name">{{book.title}}</div>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <script src="./js/base.js"></script>
+    <script src="./js/bookIndex.js"></script>
+</body>
+</html>
