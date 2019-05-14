@@ -18,7 +18,22 @@ var headerInfo = new Vue({
     },
     store,
     methods:{
-
+        setCookie: function(name,value,time){
+            if(typeof(time) == 'number'){
+                document.cookie = name + '=' + value + ';max-age=' + time;
+            }else{
+                document.cookie = name + '=' + value + ';expires=' + time;
+            }
+            return this;
+        },
+        removeCookie: function(name){
+            return this.setCookie(name,'',-1);
+        },
+        signOut: function () {
+            this.removeCookie("uid");
+            this.removeCookie("uname");
+            window.location.reload();
+        }
     },
     created: function () {
         this.uid = getCookie("uid");

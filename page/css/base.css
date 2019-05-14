@@ -24,22 +24,17 @@ body{
 .header_in .left_side img{
     width: 80px;
 }
-.header_in .right_side{
-    position: relative;
-    float: right;
-    height: 45px;
-}
-.header_in .right_side div{
-    display: inline-block;
-    vertical-align: middle;
-}
-.header_in .avatar{
+.header_in .avatar_box{
     position: absolute;
     top: 50%;
     height: 36px;
     right: 100px;
     margin-top: -18px;
     white-space: nowrap;
+    padding-left: 60px;
+}
+.header_in .avatar_box:hover .btn_box{
+    display: block;
 }
 .header_in .avatar img{
     width: 36px;
@@ -68,6 +63,32 @@ body{
     border-bottom-right-radius: 5px;
     padding-bottom: 5px;
     text-decoration: none!important;
+}
+.header_in .right_side{
+    position: relative;
+    float: right;
+    height: 45px;
+}
+.right_side .btn_box{
+    display: none;
+    position: absolute;
+    height: 26px;
+    left: 0px;
+    top: 50%;
+    margin-top: -13px;
+}
+.right_side .btn_box .btn{
+    display: inline-block;
+    width: 50px;
+    height: 26px;
+    border-radius: 4px;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 26px;
+    text-align: center;
+    background-color: #00a1d6;
+    cursor: pointer;
 }
 .banner{
     height: 170px;

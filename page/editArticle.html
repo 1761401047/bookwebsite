@@ -28,10 +28,16 @@
                 <img src="./img/home.png"></img>
             </a>
             <div class="right_side">
-                <a href="/userCenter.html" target="_blank" class="avatar">
-                    <img :src="'/getAvatarByUid?uid=' + uid" alt="">
-                    <span class="user_name">{{userName}}</span>
-                </a>
+                <div class="avatar_box">
+                    <a href="/userCenter.html" target="_blank" class="avatar">
+                        <img :src="'/getAvatarByUid?uid=' + uid" alt="">
+                        <span class="user_name">{{userName}}</span>
+                    </a>
+                    <div class="btn_box">
+                        <a href="/login.html" class="login btn" v-if="uid === ''">登录</a>
+                        <div class="sign_out btn" v-if="uid !== ''" @click="signOut">退出</div>
+                    </div>
+                </div>
                 <a href="/editArticle.html" target="_blank" class="w_ar">发表文章</a>
             </div>
         </div>
