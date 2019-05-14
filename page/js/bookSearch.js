@@ -1,7 +1,7 @@
 var bookArea = new Vue({
     el: "#book_area",
     data: {
-        tag: "",
+        keyword: "",
         totalCount: 0,
         pageCount: 1,
         pageSize: 10,
@@ -16,7 +16,7 @@ var bookArea = new Vue({
         getBookList: function (page) {
             axios({
                 method: "get",
-                url: `/getBookListByTag?tag=${this.tag}&page=${page-1}&pageSize=${this.pageSize}`
+                url: `/getBookListByKeyword?keyword=${this.keyword}&page=${page}&pageSize=${this.pageSize}`
             }).then(function(resp) {
                 bookArea.bookList = resp.data.data;
             }).catch(function (resp) {
@@ -26,7 +26,7 @@ var bookArea = new Vue({
         getPaging: function () {
             axios({
                 method: "get",
-                url: "/getBookCountByTag?tag=" + this.tag
+                url: "/getBookCountByKeyword?keyword=" + this.keyword
             }).then(function(resp) {
                 var count = resp.data.data.count;
                 bookArea.totalCount = count;
@@ -64,8 +64,8 @@ var bookArea = new Vue({
         }
     },
     created: function () {
-        var tag = decodeURIComponent(location.search).slice(1).split('=')[1].trim();
-        this.tag = tag;
+        var keyword = decodeURIComponent(location.search).slice(1).split('=')[1].trim();
+        this.keyword = keyword;
         this.getBookList(1);
         this.getPaging();
     }

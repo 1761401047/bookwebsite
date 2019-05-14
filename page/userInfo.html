@@ -14,6 +14,9 @@
 <body>
 <header class="header">
     <div class="header_in" id="header_info">
+        <a href="/index.html" class="left_side">
+            <img src="./img/home.png"></img>
+        </a>
         <div class="right_side">
             <a href="/userCenter.html" target="_blank" class="avatar">
                 <img :src="'/getAvatarByUid?uid=' + uid" alt="">
@@ -50,7 +53,7 @@
         <div class="title">他的书籍</div>
         <ul class="book_list">
             <li class="book_item" v-for="book in bookList">
-                <a :href="'/bookDetail.html?bid=' + book.id" target="_blank" class="book_info">
+                <a :href="'/bookDetail.html?bid=' + book.id" target="_blank" class="book_info" :title="book.title">
                     <img :src="'/getBookPic?path=' + book.cover_path" alt="" class="cover">
                     <p class="book_title">{{book.title}}</p>
                 </a>
@@ -62,7 +65,7 @@
         <div class="title">他的粉丝</div>
         <ul class="fans_list">
             <li class="fan_item" v-for="fans in $store.state.fansArr">
-                <a :href="fans.id == $store.state.myUid ? '/userCenter.html' : '/userInfo.html?uid=' + fans.id" target="_blank">
+                <a :href="fans.id == $store.state.myUid ? '/userCenter.html' : '/userInfo.html?uid=' + fans.id" target="_blank" :title="fans.user_name">
                     <img :src="'/getAvatarByUid?uid=' + fans.id" alt="" class="avatar">
                     <p class="name">{{fans.user_name}}</p>
                 </a>
@@ -73,7 +76,7 @@
         <div class="title">他的关注</div>
         <ul class="follow_list">
             <li class="follow_item" v-for="follow in followArr">
-                <a :href="follow.id == $store.state.myUid ? '/userCenter.html' : '/userInfo.html?uid=' + follow.id" target="_blank">
+                <a :href="follow.id == $store.state.myUid ? '/userCenter.html' : '/userInfo.html?uid=' + follow.id" target="_blank" :title="follow.user_name">
                     <img :src="'/getAvatarByUid?uid=' + follow.id" alt="" class="avatar">
                     <p class="name">{{follow.user_name}}</p>
                 </a>

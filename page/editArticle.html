@@ -24,6 +24,9 @@
 <body>
     <header class="header">
         <div class="header_in" id="header_info">
+            <a href="/index.html" class="left_side">
+                <img src="./img/home.png"></img>
+            </a>
             <div class="right_side">
                 <a href="/userCenter.html" target="_blank" class="avatar">
                     <img :src="'/getAvatarByUid?uid=' + uid" alt="">
@@ -33,14 +36,7 @@
             </div>
         </div>
     </header>
-    <div class="banner">
-        <div class="banner_in">
-            <div class="search_box">
-                <input type="text">
-                <div class="button"></div>
-            </div>
-        </div>
-    </div>
+    <div class="banner" id="banner_area"></div>
     <div class="container">
         <h1>文章编辑</h1>
         <input type="text" placeholder="请输入标题" id="title">

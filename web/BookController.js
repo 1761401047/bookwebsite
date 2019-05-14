@@ -222,4 +222,68 @@ function getBookList(request, response){
 }
 path.set("/getBookList", getBookList);
 
+function getBookListByTag(request, response){
+    var params = url.parse(request.url, true).query;
+    var tag = params.tag;
+    var page = parseInt(params.page);
+    var pageSize = parseInt(params.pageSize);
+    console.log(page,pageSize)
+    BookDao.queryBookByTag(tag,page,pageSize,function (result) {
+        response.writeHead(200, {
+            "Content-Type": "text/html; charset=utf-8"
+        });
+        response.write(respUtil.writeResult("success", "查询成功", result));
+        response.end();
+    })
+
+}
+path.set("/getBookListByTag", getBookListByTag);
+
+function getBookCountByTag(request, response){
+    var params = url.parse(request.url, true).query;
+    var tag = params.tag;
+    BookDao.queryAllBookByTag(tag,function (result) {
+        var count = result.length;
+        response.writeHead(200, {
+            "Content-Type": "text/html; charset=utf-8"
+        });
+        response.write(respUtil.writeResult("success", "查询成功", {count:count}));
+        response.end();
+    })
+
+}
+path.set("/getBookCountByTag", getBookCountByTag);
+
+function getBookListByKeyword(request, response){
+    var params = url.parse(request.url, true).query;
+    var keyword = params.keyword;
+    var page = parseInt(params.page) - 1;
+    var pageSize = parseInt(params.pageSize);
+    console.log(keyword,page,pageSize)
+    BookDao.queryBookByKeyword(keyword,page,pageSize,function (result) {
+        console.log(result);
+        response.writeHead(200, {
+            "Content-Type": "text/html; charset=utf-8"
+        });
+        response.write(respUtil.writeResult("success", "查询成功", result));
+        response.end();
+    })
+}
+path.set("/getBookListByKeyword", getBookListByKeyword);
+
+
+function getBookCountByKeyword(request, response){
+    var params = url.parse(request.url, true).query;
+    var keyword = params.keyword;
+    BookDao.queryAllBookByKeyword(keyword,function (result) {
+        var count = result.length;
+        response.writeHead(200, {
+            "Content-Type": "text/html; charset=utf-8"
+        });
+        response.write(respUtil.writeResult("success", "查询成功", {count:count}));
+        response.end();
+    })
+}
+path.set("/getBookCountByKeyword", getBookCountByKeyword);
+
 module.exports.path = path;

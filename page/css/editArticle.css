@@ -4,6 +4,9 @@ body{
 .container{
     width: 960px;
 }
+.header_in img{
+    max-width: none;
+}
 #editor{
     height: 600px;
 }

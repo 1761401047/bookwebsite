@@ -1,24 +1,25 @@
-var bookArea = new Vue({
-    el: "#book_area",
+var contentBox = new Vue({
+    el: "#content_box",
     data: {
-        tag: "",
+        keyword: "",
+        articleList: [],
         totalCount: 0,
-        pageCount: 1,
-        pageSize: 10,
+        pageSize: 5,
+        pageCount: 0,
         nowPage: 1,
-        pageArr: [],
-        bookList: []
+        pageArr: []
     },
     computed: {
 
     },
     methods:{
-        getBookList: function (page) {
+        getArticleList: function (page) {
             axios({
                 method: "get",
-                url: `/getBookListByTag?tag=${this.tag}&page=${page-1}&pageSize=${this.pageSize}`
+                url: "/getArticleListByKeyword?keyword=" + this.keyword + "&page=" + page + "&pageSize=" + this.pageSize,
             }).then(function(resp) {
-                bookArea.bookList = resp.data.data;
+                contentBox.articleList = resp.data.data;
+                console.log(contentBox.articleList);
             }).catch(function (resp) {
                 console.log("请求失败");
             });
@@ -26,12 +27,15 @@ var bookArea = new Vue({
         getPaging: function () {
             axios({
                 method: "get",
-                url: "/getBookCountByTag?tag=" + this.tag
+                url: "/getArticleCountByKeyword?keyword=" + this.keyword
             }).then(function(resp) {
+                console.log(resp);
                 var count = resp.data.data.count;
-                bookArea.totalCount = count;
-                bookArea.pageCount = Math.ceil(count / bookArea.pageSize);
-                bookArea.updatePaging();
+                console.log("count:",count);
+                contentBox.totalCount = count;
+                contentBox.pageCount = Math.ceil(count / contentBox.pageSize);
+                console.log(contentBox.pageCount);
+                contentBox.updatePaging();
             }).catch(function (resp) {
                 console.log("请求失败");
             });
@@ -39,12 +43,13 @@ var bookArea = new Vue({
         clickPaging: function(e){
             var pageIndex = parseInt(e.target.dataset.page_index);
             this.nowPage = pageIndex;
-            this.getBookList(this.nowPage);
+            this.getArticleList(this.nowPage);
             this.updatePaging();
         },
         updatePaging: function () {
             var result = [];
             var nowPage = this.nowPage;
+            console.log("nowPage:", nowPage);
             result.push({text:"<<", page: 1});
             if (nowPage > 2) {
                 result.push({text:nowPage - 2, page:nowPage - 2});
@@ -61,12 +66,13 @@ var bookArea = new Vue({
             }
             result.push({text:">>", page: this.pageCount});
             this.pageArr = result;
+            console.log(this.pageArr);
         }
     },
     created: function () {
-        var tag = decodeURIComponent(location.search).slice(1).split('=')[1].trim();
-        this.tag = tag;
-        this.getBookList(1);
+        var keyword = decodeURIComponent(location.search).slice(1).split('=')[1].trim();
+        this.keyword = keyword;
+        this.getArticleList(1);
         this.getPaging();
     }
 });

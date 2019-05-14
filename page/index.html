@@ -12,6 +12,9 @@
 <body>
     <header class="header">
         <div class="header_in" id="header_info">
+            <a href="/index.html" class="left_side">
+                <img src="./img/home.png"></img>
+            </a>
             <div class="right_side">
                 <a href="/userCenter.html" target="_blank" class="avatar">
                     <img :src="'/getAvatarByUid?uid=' + uid" alt="">
@@ -21,21 +24,26 @@
             </div>
         </div>
     </header>
-    <div class="banner">
+    <div class="banner banner_index" id="banner_area">
         <div class="banner_in">
+            <div class="choose_box" @click="changeChoose">
+                <div class="article_btn btn" :class="{active:isArticle}" data-choose="article">文章</div>
+                <div class="book_btn btn" :class="{active:!isArticle}" data-choose="book">图书</div>
+            </div>
             <div class="search_box">
-                <input type="text">
-                <div class="button"></div>
+                <input type="text" v-model="searchText" placeholder="请输入要查询的内容" @keydown.enter="search">
+                <div class="button" @click="search"></div>
             </div>
         </div>
     </div>
+    <div class="bg_cover"></div>
     <div class="content">
         <div class="hot_ar category" id="hot_ar">
             <div class="title">
                 <span class="icon"></span>
                 <span class="text">热门推荐</span>
             </div>
-            <ul class="article_list">
+            <ul class="article_list part_index">
                 <li class="article_item" v-for="article in hotArticleList">
                     <div class="lf_side">
                         <a v-bind:href="'/articleDetail.html?id=' + article.id" target="_blank" class="main">
@@ -56,7 +64,7 @@
                 <span class="icon"></span>
                 <span class="text">最新文章</span>
             </div>
-            <ul class="article_list">
+            <ul class="article_list part_index">
                 <li class="article_item" v-for="article in newArticleList">
                     <div class="lf_side">
                         <a v-bind:href="'/articleDetail.html?id=' + article.id" target="_blank" class="main">
@@ -79,7 +87,7 @@
                     <span class="text">{{articletype.tag}}</span>
                 </a>
                 <a v-bind:href="'/category.html?tag=' + articletype.tag" target="_blank" class="more_button">更多</a>
-                <ul class="article_list">
+                <ul class="article_list part_index">
                     <li class="article_item" v-for="article in articletype.content">
                         <div class="lf_side">
                             <a v-bind:href="'/articleDetail.html?id=' + article.id" target="_blank" class="main">

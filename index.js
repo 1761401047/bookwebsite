@@ -52,6 +52,15 @@ app.post("/uploadAvatar",uploadTool.single("file"),loader.get("/uploadAvatar"));
 app.get("/getAvatar",loader.get("/getAvatar"));
 app.get("/getAvatarByUid",loader.get("/getAvatarByUid"));
 app.get("/getBookList",loader.get("/getBookList"));
+app.get("/getBookListByTag",loader.get("/getBookListByTag"));
+app.get("/getBookCountByTag",loader.get("/getBookCountByTag"));
+app.get("/getArticleListByKeyword",loader.get("/getArticleListByKeyword"));
+app.get("/getArticleCountByKeyword",loader.get("/getArticleCountByKeyword"));
+app.get("/getBookListByKeyword",loader.get("/getBookListByKeyword"));
+app.get("/getBookCountByKeyword",loader.get("/getBookCountByKeyword"));
+
+
+
 
 
 

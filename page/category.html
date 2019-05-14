@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>图书分类</title>
+    <title>文章分类</title>
     <link rel="stylesheet" href="./css/reset.css">
     <link rel="stylesheet" href="./css/base.css">
-    <link rel="stylesheet" href="./css/category.css">
+    <link rel="stylesheet" href="./css/index.css">
     <script src="./js/vue.js"></script>
     <script src="./js/vuex.js"></script>
     <script src="./js/axios.js"></script>
@@ -13,6 +13,9 @@
 <body>
     <header class="header">
         <div class="header_in" id="header_info">
+            <a href="/index.html" class="left_side">
+                <img src="./img/home.png"></img>
+            </a>
             <div class="right_side">
                 <a href="/userCenter.html" target="_blank" class="avatar">
                     <img :src="'/getAvatarByUid?uid=' + uid" alt="">
@@ -22,14 +25,18 @@
             </div>
         </div>
     </header>
-    <div class="banner">
-    <div class="banner_in">
-        <div class="search_box">
-            <input type="text">
-            <div class="button"></div>
+    <div class="banner" id="banner_area">
+        <div class="banner_in">
+            <div class="choose_box" @click="changeChoose">
+                <div class="article_btn btn" :class="{active:isArticle}" data-choose="article">文章</div>
+                <div class="book_btn btn" :class="{active:!isArticle}" data-choose="book">图书</div>
+            </div>
+            <div class="search_box">
+                <input type="text" v-model="searchText" placeholder="请输入要查询的内容" @keydown.enter="search">
+                <div class="button" @click="search"></div>
+            </div>
         </div>
     </div>
-</div>
     <div class="content_box" id="content_box">
         <div class="content category">
             <a href="#" target="_blank" class="title">
@@ -52,10 +59,10 @@
                     </div>
                 </li>
             </ul>
+            <ul class="paging" @click="clickPaging">
+                <li v-for="item in pageArr" :data-page_index="item.page" :class="{active:item.text == nowPage}">{{item.text}}</li>
+            </ul>
         </div>
-        <ul class="paging" @click="clickPaging">
-            <li v-for="item in pageArr" :data-page_index="item.page" :class="{active:item.text == nowPage}">{{item.text}}</li>
-        </ul>
     </div>
     <script src="./js/base.js"></script>
     <script src="./js/category.js"></script>

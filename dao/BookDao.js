@@ -45,6 +45,21 @@ function queryBookByTag(tag,page,pageSize,success) {
     connection.end();
 }
 
+function queryAllBookByTag(tag,success) {
+    var querySql = "select * from book where tag = ? and state = 1 order by id desc;";
+    var params = [tag];
+    var connection = dbutil.createConnection();
+    connection.connect();
+    connection.query(querySql, params, function (error, result) {
+        if (error == null) {
+            success(result);
+        } else {
+            console.log(error);
+        }
+    });
+    connection.end();
+}
+
 function deleteBookById(id,success) {
     var deleteSql = "delete from book where id = ?;";
     var params = [id];
@@ -90,10 +105,47 @@ function updateBookState(id, success) {
     connection.end();
 }
 
+
+function queryBookByKeyword(keyword,page,pageSize,success) {
+    var querySql = 'select *  from book where title like "%"?"%" order by id desc limit ?, ?;';
+    var params = [keyword, page * pageSize, pageSize];
+    var connection = dbutil.createConnection();
+    connection.connect();
+    connection.query(querySql, params, function (error, result) {
+        if (error == null) {
+            success(result);
+        } else {
+            console.log(error);
+        }
+    });
+    connection.end();
+}
+
+function queryAllBookByKeyword(keyword,success) {
+    var querySql = 'select *  from book where title like "%"?"%" order by id desc;';
+    var params = [keyword];
+    var connection = dbutil.createConnection();
+    connection.connect();
+    connection.query(querySql, params, function (error, result) {
+        if (error == null) {
+            success(result);
+        } else {
+            console.log(error);
+        }
+    });
+    connection.end();
+}
+
 module.exports.insertBook = insertBook;
 module.exports.queryBookByUid = queryBookByUid;
 module.exports.deleteBookById = deleteBookById;
 module.exports.queryBookByBookid = queryBookByBookid;
 module.exports.updateBookState = updateBookState;
 module.exports.queryBookByTag = queryBookByTag;
+module.exports.queryAllBookByTag = queryAllBookByTag;
+module.exports.queryBookByKeyword = queryBookByKeyword;
+module.exports.queryAllBookByKeyword = queryAllBookByKeyword;
+
+
+
 

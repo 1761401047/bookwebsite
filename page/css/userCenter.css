@@ -11,11 +11,12 @@ body{
     background-color: #ffffff;
     box-shadow: 0 1px 4px 0 #cccccc;
 }
+
 .banner{
     position: relative;
     margin: 45px auto 0;
     background-image: url("../img/banner3.png");
-    background-position: center bottom;
+    background-position: center 40%;
 }
 .banner .bg{
     position: absolute;
@@ -62,7 +63,7 @@ body{
     position: absolute;
     display: none;
     bottom: -67px;
-    left: -14px;
+    left: -10px;
     width: 150px;
     height: 100px;
     background-color: rgba(0,0,0,0);
@@ -292,6 +293,7 @@ body{
     width: 150px;
     height: 200px;
     border-radius: 4px;
+    box-shadow: 4px 4px 4px 1px #888888;
 }
 .book_area .book_title,
 .sub_area .book_title{

@@ -77,6 +77,39 @@ function getArticleListByTag(request, response){
 }
 path.set("/getArticleListByTag", getArticleListByTag);
 
+
+function getArticleListByKeyword(request, response){
+    var params = url.parse(request.url, true).query;
+    var keyword = params.keyword;
+    var page = parseInt(params.page) - 1;
+    var pageSize = parseInt(params.pageSize);
+    console.log(keyword)
+    ArticleDao.queryArticleByKeyword(keyword,page,pageSize,function (result) {
+        console.log(result);
+        response.writeHead(200, {
+            "Content-Type": "text/html; charset=utf-8"
+        });
+        response.write(respUtil.writeResult("success", "查询成功", result));
+        response.end();
+    })
+}
+path.set("/getArticleListByKeyword", getArticleListByKeyword);
+
+
+function getArticleCountByKeyword(request, response){
+    var params = url.parse(request.url, true).query;
+    var keyword = params.keyword;
+    ArticleDao.queryAllArticleByKeyword(keyword,function (result) {
+        var count = result.length;
+        response.writeHead(200, {
+            "Content-Type": "text/html; charset=utf-8"
+        });
+        response.write(respUtil.writeResult("success", "查询成功", {count:count}));
+        response.end();
+    })
+}
+path.set("/getArticleCountByKeyword", getArticleCountByKeyword);
+
 function getHotArticle(request, response){
     ArticleDao.queryHotArticle(0,5,function (result) {
         response.writeHead(200, {

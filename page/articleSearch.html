@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>文章查询</title>
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/base.css">
+    <link rel="stylesheet" href="./css/index.css">
+    <script src="./js/vue.js"></script>
+    <script src="./js/vuex.js"></script>
+    <script src="./js/axios.js"></script>
+</head>
+<body>
+<header class="header">
+    <div class="header_in" id="header_info">
+        <a href="/index.html" class="left_side">
+            <img src="./img/home.png"></img>
+        </a>
+        <div class="right_side">
+            <a href="/userCenter.html" target="_blank" class="avatar">
+                <img :src="'/getAvatarByUid?uid=' + uid" alt="">
+                <span class="user_name">{{userName}}</span>
+            </a>
+            <a href="/editArticle.html" target="_blank" class="w_ar">发表文章</a>
+        </div>
+    </div>
+</header>
+<div class="banner" id="banner_area">
+    <div class="banner_in">
+        <div class="choose_box" @click="changeChoose">
+            <div class="article_btn btn" :class="{active:isArticle}" data-choose="article">文章</div>
+            <div class="book_btn btn" :class="{active:!isArticle}" data-choose="book">图书</div>
+        </div>
+        <div class="search_box">
+            <input type="text" v-model="searchText" placeholder="请输入要查询的内容" @keydown.enter="search">
+            <div class="button" @click="search"></div>
+        </div>
+    </div>
+</div>
+<div class="content_box" id="content_box">
+    <div class="content category">
+        <a href="#" target="_blank" class="title">
+            <span class="icon"></span>
+            <span class="text">关键词：{{keyword}}</span>
+        </a>
+        <ul class="article_list" v-if="articleList.length !== 0">
+            <li class="article_item" v-for="article in articleList">
+                <div class="lf_side">
+                    <a :href="'/articleDetail.html?id=' + article.id" target="_blank" class="main">
+                        <div class="title">{{article.title}}</div>
+                        <div class="cont" v-html="article.content.replace(/<img[\w\W]*>/, '').replace(/<[\w\W]{1,5}>/g, '')"></div>
+                    </a>
+                    <div class="bottom">
+                        <div class="author">{{article.u_name}}</div>
+                        <div class="view"><span class="icon"></span>{{article.views > 10000 ? (article.views / 10000).toFixed(1) +"万" : article.views}}</div>
+                        <div class="date">{{new Date(article.c_time * 1000).toLocaleDateString().replace(/\//g,'-')}}</div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <div class="no_find" v-if="articleList.length === 0">很抱歉，没有查询到相关内容</div>
+        <ul class="paging" @click="clickPaging">
+            <li v-for="item in pageArr" :data-page_index="item.page" :class="{active:item.text == nowPage}">{{item.text}}</li>
+        </ul>
+    </div>
+</div>
+<script src="./js/base.js"></script>
+<script src="./js/articleSearch.js"></script>
+</body>
+</html>

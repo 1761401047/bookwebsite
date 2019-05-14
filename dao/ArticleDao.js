@@ -126,6 +126,38 @@ function deleteArticleByArticleId(article_id, success) {
     connection.end();
 }
 
+function queryArticleByKeyword(keyword,page,pageSize,success) {
+    var querySql = 'select *  from article where title like "%"?"%" or content like "%"?"%" order by id desc limit ?, ?;';
+    var params = [keyword, keyword, page * pageSize, pageSize];
+
+    var connection = dbutil.createConnection();
+    connection.connect();
+    connection.query(querySql, params, function (error, result) {
+        if (error == null) {
+            success(result);
+        } else {
+            console.log(error);
+        }
+    });
+    connection.end();
+}
+
+function queryAllArticleByKeyword(keyword,success) {
+    var querySql = 'select *  from article where title like "%"?"%" or content like "%"?"%" order by id desc;';
+    var params = [keyword,keyword];
+
+    var connection = dbutil.createConnection();
+    connection.connect();
+    connection.query(querySql, params, function (error, result) {
+        if (error == null) {
+            success(result);
+        } else {
+            console.log(error);
+        }
+    });
+    connection.end();
+}
+
 module.exports.insertArticle = insertArticle;
 module.exports.queryHotArticle = queryHotArticle;
 module.exports.queryNewArticle = queryNewArticle;
@@ -134,3 +166,6 @@ module.exports.queryArticleCount = queryArticleCount;
 module.exports.updateViews = updateViews;
 module.exports.queryArticleByUid = queryArticleByUid;
 module.exports.deleteArticleByArticleId = deleteArticleByArticleId;
+module.exports.queryArticleByKeyword = queryArticleByKeyword;
+module.exports.queryAllArticleByKeyword = queryAllArticleByKeyword;
+

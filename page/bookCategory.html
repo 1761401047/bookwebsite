@@ -12,6 +12,9 @@
 <body>
 <header class="header">
     <div class="header_in" id="header_info">
+        <a href="/index.html" class="left_side">
+            <img src="./img/home.png"></img>
+        </a>
         <div class="right_side">
             <a href="/userCenter.html" target="_blank" class="avatar">
                 <img :src="'/getAvatarByUid?uid=' + uid" alt="">
@@ -21,31 +24,33 @@
         </div>
     </div>
 </header>
-<div class="banner">
+<div class="banner" id="banner_area">
     <div class="banner_in">
+        <div class="choose_box" @click="changeChoose">
+            <div class="article_btn btn" :class="{active:isArticle}" data-choose="article">文章</div>
+            <div class="book_btn btn" :class="{active:!isArticle}" data-choose="book">图书</div>
+        </div>
         <div class="search_box">
-            <input type="text">
-            <div class="button"></div>
+            <input type="text" v-model="searchText" placeholder="请输入要查询的内容" @keydown.enter="search">
+            <div class="button" @click="search"></div>
         </div>
     </div>
 </div>
-<div class="content">
-    <ul class="book_group" id="book_cate">
-<!--        <li class="cate_item category" v-for="bookType in bookList">-->
-<!--            <a href="" target="_blank" class="title">-->
-<!--                <span class="icon"></span>-->
-<!--                <span class="text">{{bookType.tag}}</span>-->
-<!--            </a>-->
-<!--            <a href="" target="_blank" class="more_button">更多</a>-->
-<!--            <ul class="book_list">-->
-<!--                <li class="book_item" v-for="book in bookType.content">-->
-<!--                    <a :href="'/bookDetail.html?bid=' + book.id" target="_blank">-->
-<!--                        <img :src="'/getBookPic?path=' + book.cover_path" alt="" class="cover">-->
-<!--                        <div class="book_name">{{book.title}}</div>-->
-<!--                    </a>-->
-<!--                </li>-->
-<!--            </ul>-->
-<!--        </li>-->
+<div class="content" id="book_area">
+    <div class="title">
+        <span class="icon"></span>
+        <span class="text">{{tag}}</span>
+    </div>
+    <ul class="book_list">
+        <li class="book_item" v-for="book in bookList">
+            <a :href="'/bookDetail.html?bid=' + book.id" target="_blank" :title="book.title">
+                <img :src="'/getBookPic?path=' + book.cover_path" alt="" class="cover">
+                <div class="book_name">{{book.title}}</div>
+            </a>
+        </li>
+    </ul>
+    <ul class="paging" @click="clickPaging">
+        <li v-for="item in pageArr" :data-page_index="item.page" :class="{active:item.text == nowPage}">{{item.text}}</li>
     </ul>
 </div>
 <script src="./js/base.js"></script>

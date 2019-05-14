@@ -14,6 +14,9 @@
 <body>
     <header class="header">
         <div class="header_in" id="header_info">
+            <a href="/index.html" class="left_side">
+                <img src="./img/home.png"></img>
+            </a>
             <div class="right_side">
                 <a href="/userCenter.html" target="_blank" class="avatar">
                     <img :src="'/getAvatar?path=' + $store.state.avatar" alt="">
@@ -55,7 +58,7 @@
             <div class="btn" @click="openBookbox">上传书籍</div>
             <ul class="book_list">
                 <li class="book_item" v-for="book in bookList">
-                    <a :href="'/bookDetail.html?bid=' + book.id" target="_blank" class="book_info">
+                    <a :href="'/bookDetail.html?bid=' + book.id" target="_blank" class="book_info" :title="book.title">
                         <img :src="'/getBookPic?path=' + book.cover_path" alt="" class="cover">
                         <p class="book_title">{{book.title}}</p>
                     </a>
@@ -92,7 +95,7 @@
             <div class="title">我的订阅</div>
             <ul class="book_list">
                 <li class="book_item" v-for="book in subBookList">
-                    <a :href="'/bookDetail.html?bid=' + book.id" target="_blank" class="book_info">
+                    <a :href="'/bookDetail.html?bid=' + book.id" target="_blank" class="book_info" :title="book.title">
                         <img :src="'/getBookPic?path=' + book.cover_path" alt="" class="cover">
                         <p class="book_title">{{book.title}}</p>
                     </a>
@@ -112,7 +115,7 @@
             <div class="title">外借书籍</div>
             <ul class="book_list">
                 <li class="book_item" v-for="book in subedBookList">
-                    <a :href="'/bookDetail.html?bid=' + book.id" target="_blank" class="book_info">
+                    <a :href="'/bookDetail.html?bid=' + book.id" target="_blank" class="book_info" :title="book.title">
                         <img :src="'/getBookPic?path=' + book.cover_path" alt="" class="cover">
                         <p class="book_title">{{book.title}}</p>
                     </a>
@@ -132,7 +135,7 @@
             <div class="title">我的粉丝</div>
             <ul class="fans_list">
                 <li class="fan_item" v-for="fans in fansArr">
-                    <a :href="'/userInfo.html?uid=' + fans.id" target="_blank">
+                    <a :href="'/userInfo.html?uid=' + fans.id" target="_blank" :title="fans.user_name">
                         <img :src="'/getAvatarByUid?uid=' + fans.id" alt="" class="avatar">
                         <p class="name">{{fans.user_name}}</p>
                     </a>
@@ -143,7 +146,7 @@
             <div class="title">我的关注</div>
             <ul class="follow_list">
                 <li class="follow_item"  v-for="follow in followArr">
-                    <a :href="'/userInfo.html?uid=' + follow.id" target="_blank">
+                    <a :href="'/userInfo.html?uid=' + follow.id" target="_blank" :title="follow.user_name">
                         <img :src="'/getAvatarByUid?uid=' + follow.id" alt="" class="avatar">
                         <p class="name">{{follow.user_name}}</p>
                     </a>
