@@ -46,7 +46,21 @@
     <div class="container">
         <h1>文章编辑</h1>
         <input type="text" placeholder="请输入标题" id="title">
-        <input type="text" placeholder="请输入文章类型，用逗号隔开" id="tag">
+        <select id="tag">
+            <option value="小说">小说</option>
+            <option value="文学">文学</option>
+            <option value="动漫">动漫</option>
+            <option value="历史">历史</option>
+            <option value="传记">传记</option>
+            <option value="艺术">艺术</option>
+            <option value="体育">体育</option>
+            <option value="心理">心理</option>
+            <option value="文化">文化</option>
+            <option value="经济">经济</option>
+            <option value="管理">管理</option>
+            <option value="科普">科普</option>
+            <option value="其他">其他</option>
+        </select>
         <div class="btn-toolbar" data-role="editor-toolbar" data-target="#editor">
             <div class="btn-group">
                 <a class="btn dropdown-toggle" data-toggle="dropdown" title="Font"><i class="icon-font"></i><b class="caret"></b></a>

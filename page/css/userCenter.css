@@ -378,25 +378,59 @@ body{
 }
 .upload_book_box.show{
     display: block;
+    padding: 10px;
 }
 .upload_book_box .close_btn{
     float: right;
     cursor: pointer;
 }
-.upload_book_box .cover_img{
+.upload_book_box .book_name{
+    height: 20px;
+    font-size: 15px;
+    margin-right: 10px;
+}
+.upload_book_box .tag_box{
+    height: 26px;
+}
+.upload_book_box .tag_box option{
+    height: 26px;
+}
+.upload_book_box .choose_cover{
+    display: block;
+    margin-top: 10px;
+}
+.upload_book_box .img_box{
+    display: inline-block;
     width: 150px;
     height: 200px;
+    margin-top: 10px;
+    margin-right: 20px;
+    border: 1px solid #cccccc;
+}
+.upload_book_box .img_box .cover_img{
+    width: 100%;
+    height: 100%;
+}
+.upload_book_box .book_desc{
+    display: inline-block;
+    margin-top: 10px;
+    width: 300px;
+    height: 150px;
+    vertical-align: bottom;
 }
 .upload_book_box .upload_btn{
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
     width: 100px;
     height: 40px;
     background-color: #00a1d6;
     border-radius: 4px;
-    margin: 0 auto;
     color: #ffffff;
     font-size: 18px;
     font-weight: 700;
     text-align: center;
     line-height: 40px;
-    margin-top: 40px;
+    cursor: pointer;
 }

@@ -60,10 +60,6 @@ app.get("/getBookListByKeyword",loader.get("/getBookListByKeyword"));
 app.get("/getBookCountByKeyword",loader.get("/getBookCountByKeyword"));
 
 
-
-
-
-
 app.listen(globalConfig.port, function() {
     console.log("服务器已启动");
 });

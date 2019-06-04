@@ -74,9 +74,9 @@
             <div v-if="bookList.length > 6 && !isMore" class="more_btn" @click="showMore">展开</div>
             <div v-if="bookList.length > 6 && isMore" class="hide_btn" @click="hideMore">收起</div>
             <div class="upload_book_box" :class="{show:bookBoxShow}">
-                <div class="close_btn" @click="closeBookbox">close</div>
+                <div class="close_btn" @click="closeBookbox">关闭</div>
                 <input class="book_name" type="text" v-model="bookName" placeholder="请输入书籍名称">
-                <select ref="tagEle">
+                <select ref="tagEle" class="tag_box">
                     <option value="小说">小说</option>
                     <option value="文学">文学</option>
                     <option value="动漫">动漫</option>
@@ -91,9 +91,9 @@
                     <option value="科普">科普</option>
                     <option value="其他">其他</option>
                 </select>
-                <input ref="coverImg" type="file" accept="image/*" @change="changeImg">
-                <img :src="coverUrl" alt="" class="cover_img">
-                <textarea class="book_desc" v-model="bookDesc"></textarea>
+                <input ref="coverImg" type="file" accept="image/*" @change="changeImg" class="choose_cover">
+                <div class="img_box"><img :src="coverUrl" alt="" class="cover_img"></div>
+                <textarea class="book_desc" v-model="bookDesc" placeholder="请输入书籍简介"></textarea>
                 <div class="upload_btn" @click="upload">确定上传</div>
             </div>
         </div>

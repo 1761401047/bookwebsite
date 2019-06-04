@@ -16,9 +16,9 @@
     <div class="main" id="register">
         <div class="login_title">注册</div>
         <div class="login_area">
-            <input type="text" placeholder="用户名" v-model="userName" class="user_name">
-            <input type="text" placeholder="账号" v-model="account" class="account">
-            <input type="password" placeholder="密码" v-model="password" class="password">
+            <input type="text" placeholder="用户名:请输入1-15个字符" v-model="userName" class="user_name">
+            <input type="text" placeholder="账号：请输入由英文字母、数字组成的6-15位字符，以字母开头" v-model="account" class="account">
+            <input type="password" placeholder="密码：请输入由英文字母、数字、下划线组成的6-15位字符" v-model="password" class="password">
             <input type="password" placeholder="再次确认密码" v-model="re_password" class="re_password">
             <input type="text" placeholder="qq" v-model="qqNum" class="qqNum">
             <div class="btn" @click="register">注册</div>

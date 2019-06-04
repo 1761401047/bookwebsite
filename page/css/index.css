@@ -110,6 +110,9 @@ body{
 .article_item .bottom .author:hover{
     color: #00a1d6;
 }
+.article_item .bottom .view{
+    margin: 0 5px;
+}
 .ar_group .type_title:hover .text{
     color: #00a1d6;
 }

@@ -58,8 +58,7 @@
                         </a>
                         <div class="bottom">
                             <div class="author">{{article.u_name}}</div>
-                            <div class="view"><span class="icon"></span>{{article.views > 10000 ? (article.views / 10000).toFixed(1) +"万" : article.views}}</div>
-                            <!--<div class="comment"><span class="icon"></span></div>-->
+                            <div class="view"><span class="icon"></span>浏览{{article.views > 10000 ? (article.views / 10000).toFixed(1) +"万" : article.views}}</div>
                             <div class="date">{{new Date(article.c_time * 1000).toLocaleDateString().replace(/\//g,'-')}}</div>
                         </div>
                     </div>

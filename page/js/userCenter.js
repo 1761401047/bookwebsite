@@ -71,7 +71,7 @@ var banner = new Vue({
                     console.log("请求失败");
                 });
             }else{
-                alert("类型错误，请上传图片类型文件");
+                alert("文件类型错误，请上传图片类型文件");
             }
         },
         getMyInfo: function () {

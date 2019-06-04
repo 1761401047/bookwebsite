@@ -6,7 +6,7 @@ $(document).ready(function(){
         }
         var content = $("#editor").html();
         var title = $("#title").val();
-        var tag = $("#tag").val().replace(/，/g,',').trim();
+        var tag = $("#tag").val();
         var uid = getCookie("uid");
         var uname = getCookie("uname");
         console.log(content);
